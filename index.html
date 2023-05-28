@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Display media - with and without preferCurrentTab option</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="module">
+		const preferCurrentTab = document.querySelector("#preferCurrentTab");
+		const showShareModal = document.querySelector("#showShareModal");
+
+    showShareModal.addEventListener("click", async () => {
+      const stream = await window.navigator.mediaDevices.getDisplayMedia({
+				preferCurrentTab: preferCurrentTab.checked,
+			});
+      // stop using the camera
+      stream.getVideoTracks()[0].stop();
+		});
+	</script>
+</head>
+<body style="padding: 48px">
+<main>
+	<h1>Display media - with and without preferCurrentTab option</h1>
+	<article>
+		<label for="preferCurrentTab">
+			Prefer current tab: <input type="checkbox" id="preferCurrentTab">
+		</label>
+		<br><br>
+		<button id="showShareModal">Show share modal</button>
+	</article>
+</main>
+</body>
+</html>
